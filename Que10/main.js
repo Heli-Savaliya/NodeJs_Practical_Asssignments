@@ -1,0 +1,1 @@
+console.log("hello form que-10!!");

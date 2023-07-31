@@ -1,0 +1,58 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> 
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+
+</head>
+<body>
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url: "/gethello",
+                method: "GET",
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.error("AJAX Error:", error);
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NodeJS App</title>
+</head>
+<body>
+  <h1>Hello</h1>
+  <button id="getHelloBtn">Get Hello from Node.js</button>
+  <div id="response"></div>
+
+  <script>
+    document.getElementById("getHelloBtn").addEventListener("click", () => {
+      fetch('/gethello')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("response").textContent = data;
+        })
+        .catch(error => {
+          document.getElementById("response").textContent = "Error occurred: " + error.message;
+        });
+    });
+  </script>
+</body>
+</html>

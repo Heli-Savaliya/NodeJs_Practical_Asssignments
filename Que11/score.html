@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Cricket Scores</title>
+</head>
+<body>
+  <h1>Live Cricket Scores</h1>
+  <ul id="scores"></ul>
+
+  <script>
+    const scoresList = document.getElementById('scores');
+    const ws = new WebSocket('ws://localhost:8080'); // Adjust the server URL as needed
+
+    ws.onmessage = (event) => {
+      const liveScores = JSON.parse(event.data);
+      scoresList.innerHTML = '';
+
+      liveScores.forEach((match) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = match;
+        scoresList.appendChild(listItem);
+      });
+    };
+
+    ws.onclose = () => {
+      scoresList.innerHTML = '<p>Connection to live scores server closed.</p>';
+    };
+  </script>
+</body>
+</html>
